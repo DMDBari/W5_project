@@ -145,6 +145,32 @@ INSERT INTO mechanic_service(
 	2
 );
 
+-- Forgot about the stored procedure part. here is that section.
+
+CREATE OR REPLACE PROCEDURE add_customer (first_name VARCHAR, last_name VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	INSERT INTO customer(first_name, last_name)
+	values(first_name, last_name);
+END;
+$$;
+
+CREATE OR REPLACE PROCEDURE add_car (make VARCHAR, model VARCHAR, model_year INTEGER, customer_id INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	INSERT INTO car(make, model, model_year, customer_id)
+	values(make, model, model_year, customer_id);
+END;
+$$;
+
+CALL add_customer('Michael', 'Owen');
+CALL add_customer('Linda', 'Simms');
+CALL add_car('Honda', 'Accord', 2019, 3);
+CALL add_car('Ford', 'Focus', 2017, 4);
+
+
 
 
 
